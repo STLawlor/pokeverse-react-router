@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Card from 'react-bootstrap/Card';
+import React, { useEffect, useState, Link } from "react";
+import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 
 function PokemonCard({ url, name }) {
   const [pokemon, setPokemon] = useState(null);
@@ -16,17 +17,19 @@ function PokemonCard({ url, name }) {
   }, [url]);
 
   return (
-    <Card style={{ width: '18rem' }} className='mx-auto'>
+    <Card style={{ width: "18rem" }} className="mx-auto text-capitalize">
       <Card.Img
-        width='286'
-        height='286'
-        bg='dark'
-        variant='top'
+        width="286"
+        height="286"
+        bg="dark"
+        variant="top"
         src={pokemon?.sprites.front_default}
       />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Text as='div'>
+        <Card.Title>
+          <Link to={`/${name}`}>{name}</Link>
+        </Card.Title>
+        <Card.Text as="div">
           Abilities:
           <ul>
             {pokemon?.abilities.map((ability) => (
